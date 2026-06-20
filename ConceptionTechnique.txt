@@ -1,0 +1,126 @@
+E-KANDRA : PLATEFORME DE MIS EN RELATIONS PROFESSIONNEL ENTRE CLIENTS ET PRESTATAIRES
+Format : Java/Jsp
+Base de donnees : PostgreSQL
+
+
+-------------------------------
+1. ARBORESCENCE PROJET : (Ny expliaction de chaque page et fichier ao am fichier_et_pages.md)
+
+E-KANDRA/
+│
+├── src/
+│   │
+│   ├── model/
+│   │   ├── Utilisateur.java          // Classe représentant un utilisateur
+│   │   ├── Client.java               // Hérite de Utilisateur
+│   │   ├── Prestataire.java          // Hérite de Utilisateur
+│   │   ├── Administrateur.java       // Hérite de Utilisateur
+│   │   │
+│   │   ├── Mission.java              // Représentation d'une mission
+│   │   ├── Candidature.java          // Représentation d'une candidature
+│   │   ├── Evaluation.java           // Notes et avis
+│   │   ├── Message.java              // Message envoyé
+│   │   ├── Conversation.java         // Discussion entre utilisateurs
+│   │   │
+│   │   ├── Wallet.java               // Portefeuille virtuel
+│   │   ├── Transaction.java          // Historique financier
+│   │   ├── Verification.java         // Vérification identité
+│   │   │
+│   │   ├── Signalement.java          // Signalement utilisateur
+│   │   ├── Litige.java               // Gestion des conflits
+│   │   └── LogAdmin.java             // Journal des actions admin
+│   │
+│   ├── dao/
+│   │   ├── UtilisateurDAO.java       // Accès table utilisateurs
+│   │   ├── MissionDAO.java           // Accès table missions
+│   │   ├── CandidatureDAO.java       // Accès table candidatures
+│   │   ├── EvaluationDAO.java        // Accès table évaluations
+│   │   ├── MessageDAO.java           // Accès table messages
+│   │   ├── ConversationDAO.java      // Accès table conversations
+│   │   ├── WalletDAO.java            // Accès table wallets
+│   │   ├── TransactionDAO.java       // Accès table transactions
+│   │   ├── VerificationDAO.java      // Accès table vérifications
+│   │   ├── SignalementDAO.java       // Accès table signalements
+│   │   ├── LitigeDAO.java            // Accès table litiges
+│   │   └── LogAdminDAO.java          // Accès table logs admin
+│   │
+│   ├── utils/
+│   │   ├── Connexion.java            // Connexion PostgreSQL
+│   │   ├── SessionUtils.java         // Gestion des sessions
+│   │   ├── ValidationUtils.java      // Contrôles des formulaires
+│   │   └── Constantes.java           // Constantes du projet
+│   │
+│   └── exception/
+│       └── AppException.java         // Exceptions personnalisées
+│
+├── webapp/
+│   │
+│   ├── WEB-INF/
+│   │   ├── web.xml                   // Configuration application web
+│   │   ├── classes/                  // Classes compilées automatiquement apres compilation (deploy.sh / run.bat)
+│   │   └── lib/
+│   │       └── postgresql-42.7.1.jar // Efa io anaty le repository
+│   │
+│   ├── index.jsp                     // Redirection vers accueil
+│   │
+│   ├── pages/
+│   │   │
+│   │   ├── visiteur/
+│   │   │   ├── accueil.jsp           // Page d'accueil
+│   │   │   ├── missions.jsp          // Liste missions publiques
+│   │   │   ├── prestataires.jsp      // Liste prestataires
+│   │   │   ├── connexion.jsp         // Formulaire connexion
+│   │   │   └── inscription.jsp       // Formulaire inscription
+│   │   │
+│   │   ├── client/
+│   │   │   ├── dashboard.jsp         // Tableau de bord client
+│   │   │   ├── ajouterMission.jsp    // Création mission
+│   │   │   ├── modifierMission.jsp   // Modification mission
+│   │   │   ├── mesMissions.jsp       // Missions publiées
+│   │   │   ├── candidatures.jsp      // Gestion candidatures
+│   │   │   ├── paiements.jsp         // Paiements effectués
+│   │   │   ├── historique.jsp        // Historique client
+│   │   │   └── evaluation.jsp        // Evaluation prestataire
+│   │   │
+│   │   ├── prestataire/
+│   │   │   ├── dashboard.jsp         // Tableau de bord prestataire
+│   │   │   ├── profil.jsp            // Profil professionnel
+│   │   │   ├── verification.jsp      // Demande badge vérifié
+│   │   │   ├── rechercherMission.jsp // Recherche missions
+│   │   │   ├── detailMission.jsp     // Détail mission
+│   │   │   ├── postuler.jsp          // Dépôt candidature
+│   │   │   ├── mesCandidatures.jsp   // Suivi candidatures
+│   │   │   ├── wallet.jsp            // Gestion portefeuille
+│   │   │   └── historique.jsp        // Historique prestataire
+│   │   │
+│   │   ├── messagerie/
+│   │   │   └── conversation.jsp      // Discussion client/prestataire
+│   │   │
+│   │   ├── admin/
+│   │   │   ├── dashboard.jsp         // Tableau de bord admin
+│   │   │   ├── utilisateurs.jsp      // Gestion utilisateurs
+│   │   │   ├── missions.jsp          // Gestion missions
+│   │   │   ├── paiements.jsp         // Gestion transactions
+│   │   │   ├── litiges.jsp           // Gestion litiges
+│   │   │   ├── signalements.jsp      // Gestion signalements
+│   │   │   ├── verifications.jsp     // Validation badges
+│   │   │   ├── logs.jsp              // Journal des actions
+│   │   │   └── statistiques.jsp      // Statistiques plateforme
+│   │   │
+│   │   └── erreur/
+│   │       └── erreur.jsp            // Affichage erreurs
+│   │
+│   ├── css/
+│   │   └── style.css                 // Feuille de style principale
+│   │
+│   └── assets/
+│       ├── images/                   // Images du site
+│       ├── logos/                    // Logos E-KANDRA
+│       └── uploads/                  // Fichiers uploadés
+│
+├── sql/
+│   ├── schema.sql                    // Ato ny tables rehetra
+│   └── data.sql                      // Ato ny donnes de test
+│
+└── deploy.sh ou run.bat(raha windows)
+

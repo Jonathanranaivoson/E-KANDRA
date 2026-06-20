@@ -1,0 +1,61 @@
+E-KANDRA : PLATEFORME DE MIS EN RELATIONS PROFESSIONNEL ENTRE CLIENTS ET PRESTATAIRES
+Format : Java/Jsp
+Base de donnees : PostgreSQL
+
+
+-------------------------------
+1. ARBORESCENCE PROJET : (Ny expliaction de chaque page et fichier ao am fichier_et_pages.md)
+
+E-KANDRA/
+│
+├── src/
+│   │
+│   ├── model/
+│   │
+│   ├── dao/
+│   │
+│   ├── utils/
+│   │   ├── Connexion.java            // Connexion PostgreSQL
+│   └── exception/
+│       └── AppException.java         // Exceptions personnalisées
+│
+├── webapp/
+│   │
+│   ├── WEB-INF/
+│   │   ├── web.xml                   // Configuration application web
+│   │   ├── classes/                  // Classes compilées automatiquement apres compilation (deploy.sh / run.bat)
+│   │   └── lib/
+│   │       └── postgresql-42.7.1.jar // Efa io anaty le repository
+│   │
+│   ├── index.jsp                     // Redirection vers accueil
+│   │
+│   ├── pages/
+│   │   │
+│   │   ├── visiteur/
+│   │   │
+│   │   ├── client/
+│   │   │
+│   │   ├── prestataire/
+│   │   │
+│   │   ├── messagerie/
+│   │   │   └── conversation.jsp      // Discussion client/prestataire
+│   │   │
+│   │   ├── admin/
+│   │   │
+│   │   └── erreur/
+│   │       └── erreur.jsp            // Affichage erreurs
+│   │
+│   ├── css/
+│   │   └── style.css                 // Feuille de style principale
+│   │
+│   └── assets/
+│       ├── images/                   // Images du site
+│       ├── logos/                    // Logos E-KANDRA
+│       └── uploads/                  // Fichiers uploadés
+│
+├── sql/
+│   ├── schema.sql                    // Ato ny tables rehetra
+│   └── data.sql                      // Ato ny donnes de test
+│
+└── deploy.sh ou run.bat(raha windows)
+
