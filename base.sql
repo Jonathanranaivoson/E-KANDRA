@@ -17,7 +17,7 @@ CREATE TABLE type_client (
 
 -- 4. Table competences_existant
 CREATE TABLE competences_existant (
-    id_competence SERIAL PRIMARY KEY,
+    id_competence_existant SERIAL PRIMARY KEY,
     nom_competence VARCHAR(150) UNIQUE NOT NULL
 );
 
@@ -54,12 +54,12 @@ CREATE TABLE profil_prestataire (
 -- 3. Table competences_profil (Table de liaison Many-to-Many)
 CREATE TABLE competences_profil (
     id_profil_prestataire INT,
-    id_competence INT,
-    PRIMARY KEY (id_profil_prestataire, id_competence),
+    id_competence_existant INT,
+    PRIMARY KEY (id_profil_prestataire, id_competence_existant),
     CONSTRAINT fk_comp_prof_prestataire FOREIGN KEY (id_profil_prestataire) 
         REFERENCES profil_prestataire(id_profil_prestataire) ON DELETE CASCADE,
-    CONSTRAINT fk_comp_prof_competence FOREIGN KEY (id_competence) 
-        REFERENCES competences_existant(id_competence) ON DELETE CASCADE
+    CONSTRAINT fk_comp_prof_competence FOREIGN KEY (id_competence_existant) 
+        REFERENCES competences_existant(id_competence_existant) ON DELETE CASCADE
 );
 
 -- 5. Table profil_client
@@ -98,12 +98,12 @@ CREATE TABLE mission (
 -- 10. Table competences_mission (Table de liaison Many-to-Many)
 CREATE TABLE competences_mission (
     id_mission INT,
-    id_competence_mission INT,
-    PRIMARY KEY (id_mission, id_competence_mission),
+    id_competence_existant INT,
+    PRIMARY KEY (id_mission, id_competence_existant),
     CONSTRAINT fk_comp_miss_mission FOREIGN KEY (id_mission) 
-        REFERENCES mission(id_mission) ON DELETE CASCADE,
-    CONSTRAINT fk_comp_miss_competence FOREIGN KEY (id_competence_mission) 
-        REFERENCES competences_existant(id_competence) ON DELETE CASCADE
+        REFERENCES  mission(id_mission) ON DELETE CASCADE,
+    CONSTRAINT fk_comp_miss_competence FOREIGN KEY (id_competence_existant) 
+        REFERENCES competences_existant(id_competence_existant) ON DELETE CASCADE
 );
 
 -- 11. Table demande_prestataire
